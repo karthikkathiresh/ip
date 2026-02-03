@@ -24,13 +24,22 @@ public class Main {
                 printGoodbyeMessage();
                 return;
             } else {
-                tasks[taskCount] = new Task(line);
+                if (line.startsWith("todo")) {
+                    tasks[taskCount] = new ToDo(lineParser(line));
+                } else {
+                    tasks[taskCount] = new Task(line);
+                }
                 printAddedMessage(line);
                 taskCount++;
             }
 
             line = in.nextLine();
         }
+    }
+
+    public static String lineParser(String command) {
+        int firstSpaceIndex = command.indexOf(' ');
+        return command.substring(firstSpaceIndex + 1);
     }
 
     public static void printLine() {
@@ -68,7 +77,7 @@ public class Main {
             tasks[listIndex].setIsDone(true);
             printLine();
             System.out.println("    Nice! I've marked this task as done: ");
-            System.out.println("    " + tasks[listIndex].getStatusIcon() + " " + tasks[listIndex].getDescription());
+            System.out.println("    " + tasks[listIndex].toString());
             printLine();
         }
     }
@@ -89,7 +98,9 @@ public class Main {
 
     public static void printAddedMessage(String task) {
         printLine();
-        System.out.println("    added: " + task);
+        System.out.println("    Got it. I've added this task: ");
+        System.out.println("     " + tasks[taskCount].toString());
+        System.out.printf("    Now you have %d tasks in the list\n", taskCount + 1);
         printLine();
     }
 }
