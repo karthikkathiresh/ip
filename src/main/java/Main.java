@@ -25,7 +25,18 @@ public class Main {
                 return;
             } else {
                 if (line.startsWith("todo")) {
-                    tasks[taskCount] = new ToDo(lineParser(line));
+                    String description = extractDescriptionForToDo(line);
+                    tasks[taskCount] = new ToDo(description);
+                } else if (line.startsWith("deadline")) {
+                    String description = extractDescriptionForDeadline(line);
+                    String deadline = extractDeadlineForDeadline(line);
+                    tasks[taskCount] = new Deadline(description, deadline);
+                } else if (line.startsWith("event")) {
+                    String description = extractDescriptionForEvent(line);
+                    String from = extractFromForEvent(line);
+                    String to = extractToForEvent(line);
+                    tasks[taskCount] = new Event(description, from, to);
+
                 } else {
                     tasks[taskCount] = new Task(line);
                 }
@@ -37,9 +48,37 @@ public class Main {
         }
     }
 
-    public static String lineParser(String command) {
+    public static String extractDescriptionForEvent(String command) {
+        int startIndex = command.indexOf(' ') + 1;
+        int endIndex = command.indexOf("/from") - 1;
+        return command.substring(startIndex, endIndex);
+    }
+
+    public static String extractFromForEvent(String command) {
+        int startIndex = command.indexOf("/from") + 5;
+        int endIndex = command.indexOf("/to") - 1;
+        return command.substring(startIndex, endIndex);
+    }
+
+    public static String extractToForEvent(String command) {
+        int startIndex = command.indexOf("/to") + 4;
+        return command.substring(startIndex);
+    }
+
+    public static String extractDescriptionForToDo(String command) {
         int firstSpaceIndex = command.indexOf(' ');
         return command.substring(firstSpaceIndex + 1);
+    }
+
+    public static String extractDescriptionForDeadline(String command) {
+        int startIndex = command.indexOf(' ') + 1;
+        int lastIndex = command.indexOf("/by") - 1;
+        return command.substring(startIndex, lastIndex);
+    }
+
+    public static String extractDeadlineForDeadline(String command) {
+        int indexOfDeadline = command.indexOf("/by") + 4;
+        return command.substring(indexOfDeadline);
     }
 
     public static void printLine() {
