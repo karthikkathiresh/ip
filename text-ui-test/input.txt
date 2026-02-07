@@ -1,0 +1,12 @@
+list
+todo borrow book
+deadline finish CS2113 assignment /by Sunday 8pm
+event birthday party /from Wednesday 5pm /to 9pm
+list
+todo CG2023 Assignment
+mark 2
+mark 4
+list
+unmark 2
+list
+bye

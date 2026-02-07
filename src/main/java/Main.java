@@ -100,7 +100,7 @@ public class Main {
 
     public static void printListOfTasks() {
         printLine();
-        System.out.println("    Here are the tasks in your list: ");
+        System.out.println("    Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.println("    " + (i + 1) + ". " + tasks[i].toString());
         }
@@ -115,7 +115,7 @@ public class Main {
         } else {
             tasks[listIndex].setIsDone(true);
             printLine();
-            System.out.println("    Nice! I've marked this task as done: ");
+            System.out.println("    Nice! I've marked this task as done:");
             System.out.println("    " + tasks[listIndex].toString());
             printLine();
         }
@@ -129,7 +129,7 @@ public class Main {
         } else {
             tasks[listIndex].setIsDone(false);
             printLine();
-            System.out.println("    OK, I've marked this task as not done yet: ");
+            System.out.println("    OK, I've marked this task as not done yet:");
             System.out.println("    " + tasks[listIndex].getStatusIcon() + " " + tasks[listIndex].getDescription());
             printLine();
         }
@@ -137,7 +137,7 @@ public class Main {
 
     public static void printAddedMessage(String task) {
         printLine();
-        System.out.println("    Got it. I've added this task: ");
+        System.out.println("    Got it. I've added this task:");
         System.out.println("     " + tasks[taskCount].toString());
         System.out.printf("    Now you have %d tasks in the list\n", taskCount + 1);
         printLine();
