@@ -7,6 +7,9 @@ public class UserCommandParser {
     public static final String COMMAND_TODO = "todo";
     public static final String COMMAND_DEADLINE = "deadline";
     public static final String COMMAND_EVENT = "event";
+    public static final String DELIMITED_FROM = "/from";
+    public static final String DELIMITER_BY = "/by";
+    public static final String DELIMITED_TO = "/to";
 
     public static int parseForMarking(String command) {
         String integerPart = command.split(" ")[1];
@@ -15,13 +18,13 @@ public class UserCommandParser {
 
     public static String extractDescriptionForEvent(String command) {
         int startIndex = command.indexOf(' ') + 1;
-        int endIndex = command.indexOf("/from") - 1;
+        int endIndex = command.indexOf(DELIMITED_FROM) - 1;
         return command.substring(startIndex, endIndex);
     }
 
     public static String extractDescriptionForDeadline(String command) {
         int startIndex = command.indexOf(' ') + 1;
-        int lastIndex = command.indexOf("/by") - 1;
+        int lastIndex = command.indexOf(DELIMITER_BY) - 1;
         return command.substring(startIndex, lastIndex);
     }
 
@@ -31,18 +34,18 @@ public class UserCommandParser {
     }
 
     public static String extractDeadlineForDeadline(String command) {
-        int indexOfDeadline = command.indexOf("/by") + 4;
+        int indexOfDeadline = command.indexOf(DELIMITER_BY) + 4;
         return command.substring(indexOfDeadline);
     }
 
     public static String extractFromForEvent(String command) {
-        int startIndex = command.indexOf("/from") + 5;
-        int endIndex = command.indexOf("/to") - 1;
+        int startIndex = command.indexOf(DELIMITED_FROM) + 5;
+        int endIndex = command.indexOf(DELIMITED_TO) - 1;
         return command.substring(startIndex, endIndex);
     }
 
     public static String extractToForEvent(String command) {
-        int startIndex = command.indexOf("/to") + 4;
+        int startIndex = command.indexOf(DELIMITED_TO) + 4;
         return command.substring(startIndex);
     }
 }

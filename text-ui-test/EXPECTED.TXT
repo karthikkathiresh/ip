@@ -48,7 +48,7 @@
     _____________________________________________
     _____________________________________________
     OK, I've marked this task as not done yet:
-    [ ] finish CS2113 assignment
+    [D][ ] finish CS2113 assignment (by: Sunday 8pm)
     _____________________________________________
     _____________________________________________
     Here are the tasks in your list:

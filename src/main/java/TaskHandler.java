@@ -1,56 +1,52 @@
 public class TaskHandler {
 
-    public static final String MESSAGE_INVALID_TASK = "    Invalid task. Try again!";
-    public static final String MESSAGE_MARKED_TASK = "    Nice! I've marked this task as done:";
-    public static final String MESSAGE_UNMARKED_TASK = "    OK, I've marked this task as not done yet:";
+    private static boolean isValidIndex(int listIndex, TaskList taskList) {
+        return listIndex >= 0 && listIndex < taskList.getTaskCount();
+    }
 
     public static void markTaskAsDone(int listIndex, TaskList taskList) {
-        if (listIndex >= taskList.getTaskCount()) {
-            System.out.println(MESSAGE_INVALID_TASK);
+        if (isValidIndex(listIndex, taskList)) {
+            Task task = taskList.getTask(listIndex);
+            task.setIsDone(true);
+            MessagePrinter.printMarkedTask(task);
         } else {
-            taskList.getTask(listIndex).setIsDone(true);
-            MessagePrinter.printHorizontalLine();
-            System.out.println(MESSAGE_MARKED_TASK);
-            System.out.println("    " + taskList.getTask(listIndex).toString());
-            MessagePrinter.printHorizontalLine();
+            MessagePrinter.printError();
         }
     }
 
     public static void markTaskAsUndone(int listIndex, TaskList taskList) {
-        if (listIndex >= taskList.getTaskCount()) {
-            System.out.println(MESSAGE_INVALID_TASK);
+        if (isValidIndex(listIndex, taskList)) {
+            Task task = taskList.getTask(listIndex);
+            task.setIsDone(false);
+            MessagePrinter.printUnmarkedTask(task);
         } else {
-            taskList.getTask(listIndex).setIsDone(false);
-            MessagePrinter.printHorizontalLine();
-            System.out.println(MESSAGE_UNMARKED_TASK);
-            System.out.println("    " + taskList.getTask(listIndex).getStatusIcon() + " " + taskList.getTask(listIndex).getDescription());
-            MessagePrinter.printHorizontalLine();
+            MessagePrinter.printError();
         }
     }
 
-    // Inside TaskHandler.java
+    private static void addTaskAndPrint(Task task, TaskList taskList) {
+        taskList.addTask(task);
+        MessagePrinter.printAddedMessage(task, taskList.getTaskCount());
+    }
 
     public static void handleToDo(String command, TaskList taskList) {
         String description = UserCommandParser.extractDescriptionForToDo(command);
-        Task t = new ToDo(description);
-        taskList.addTask(t);
-        MessagePrinter.printAddedMessage(t, taskList.getTaskCount());
+        ToDo t = new ToDo(description);
+        addTaskAndPrint(t, taskList);
     }
 
     public static void handleDeadline(String command, TaskList taskList) {
         String description = UserCommandParser.extractDescriptionForDeadline(command);
         String by = UserCommandParser.extractDeadlineForDeadline(command);
-        Task t = new Deadline(description, by);
-        taskList.addTask(t);
-        MessagePrinter.printAddedMessage(t, taskList.getTaskCount());
+        Deadline d = new Deadline(description, by);
+        addTaskAndPrint(d, taskList);
     }
 
     public static void handleEvent(String command, TaskList taskList) {
         String description = UserCommandParser.extractDescriptionForEvent(command);
         String from = UserCommandParser.extractFromForEvent(command);
         String to = UserCommandParser.extractToForEvent(command);
-        Task t = new Event(description, from, to);
-        taskList.addTask(t);
-        MessagePrinter.printAddedMessage(t, taskList.getTaskCount());
+        Event e = new Event(description, from, to);
+        addTaskAndPrint(e, taskList);
     }
 }
