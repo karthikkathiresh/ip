@@ -7,12 +7,16 @@ public class Task {
         this.isDone = false;
     }
 
-    public String toString() {
-        return this.getStatusIcon() + " " + this.description;
-    }
-
     public void setIsDone(boolean bool) {
         this.isDone = bool;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getIsDone() {
+        return this.isDone;
     }
 
     public String getDescription() {
@@ -22,4 +26,10 @@ public class Task {
     public String getStatusIcon() {
         return (this.isDone) ? "[X]" : "[ ]";
     }
+
+    public String toString() {
+        return this.getStatusIcon() + " " + this.description;
+    }
+
+
 }
