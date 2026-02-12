@@ -1,3 +1,7 @@
+package nimbus.tasks;
+
+import nimbus.exceptions.NimbusException;
+
 public class Parser {
 
     public static final String COMMAND_LIST = "list";

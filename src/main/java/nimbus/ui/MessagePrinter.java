@@ -1,3 +1,8 @@
+package nimbus.ui;
+
+import nimbus.tasks.Task;
+import nimbus.tasks.TaskList;
+
 public class MessagePrinter {
 
     public static final String HORIZONTAL_LINE = "    _____________________________________________";

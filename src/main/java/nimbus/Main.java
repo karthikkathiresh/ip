@@ -1,4 +1,13 @@
+package nimbus;
+
 import java.util.Scanner;
+
+import nimbus.exceptions.NimbusException;
+import nimbus.tasks.Parser;
+import nimbus.tasks.Task;
+import nimbus.tasks.TaskHandler;
+import nimbus.tasks.TaskList;
+import nimbus.ui.MessagePrinter;
 
 public class Main {
 
