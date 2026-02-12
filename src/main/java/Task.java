@@ -7,8 +7,8 @@ public class Task {
         this.isDone = false;
     }
 
-    public void setIsDone(boolean bool) {
-        this.isDone = bool;
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public void setDescription(String description) {
@@ -30,6 +30,4 @@ public class Task {
     public String toString() {
         return this.getStatusIcon() + " " + this.description;
     }
-
-
 }

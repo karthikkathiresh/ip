@@ -9,51 +9,52 @@ public class MessagePrinter {
     public static final String INVALID_MESSAGE = "    Invalid task index. Try again!";
     public static final String ADDED_MESSAGE = "    Got it. I've added this task:";
 
-    public static void printHorizontalLine() {
+    public static void printLine() {
         System.out.println(HORIZONTAL_LINE);
     }
 
     public static void printWelcomeMessage() {
-        printHorizontalLine();
+        printLine();
         System.out.println(WELCOME_MESSAGE);
-        printHorizontalLine();
+        printLine();
     }
 
     public static void printGoodbyeMessage() {
-        printHorizontalLine();
+        printLine();
         System.out.println(GOODBYE_MESSAGE);
-        printHorizontalLine();
+        printLine();
     }
 
     public static void printListOfTasks(TaskList taskList) {
-        MessagePrinter.printHorizontalLine();
+        MessagePrinter.printLine();
         System.out.println(LIST_MESSAGE);
         for (int index = 0; index < taskList.getTaskCount(); index++) {
             System.out.println("    " + (index + 1) + ". " + taskList.getTask(index).toString());
         }
-        MessagePrinter.printHorizontalLine();
+        MessagePrinter.printLine();
     }
 
-    public static void printAddedMessage(Task task, int count) {
-        MessagePrinter.printHorizontalLine();
+    public static void printAddedMessage(Task task, TaskList taskList) {
+        int count = taskList.getTaskCount();
+        MessagePrinter.printLine();
         System.out.println(ADDED_MESSAGE);
         System.out.println("     " + task.toString());
         System.out.println("    Now you have " + count + " tasks in the list");
-        MessagePrinter.printHorizontalLine();
+        MessagePrinter.printLine();
     }
 
     public static void printMarkedTask(Task task) {
-        printHorizontalLine();
+        printLine();
         System.out.println(MARKED_MESSAGE);
         System.out.println("    " + task.toString());
-        printHorizontalLine();
+        printLine();
     }
 
     public static void printUnmarkedTask(Task task) {
-        printHorizontalLine();
+        printLine();
         System.out.println(UNMARKED_MESSAGE);
         System.out.println("    " + task.toString());
-        printHorizontalLine();
+        printLine();
     }
 
     public static void printError() {
