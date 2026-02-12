@@ -4,62 +4,69 @@ public class Main {
 
     private static TaskList taskList = new TaskList();
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws NimbusException {
         String userCommand;
         Scanner in = new Scanner(System.in);
-
         MessagePrinter.printWelcomeMessage();
 
         while (true) {
-
             userCommand = in.nextLine().trim();
 
             if (userCommand.isEmpty()) {
                 continue;
             }
 
-            String[] parts = userCommand.split(" ", 2);
-            String commandWord = parts[0];
-            String description = (parts.length > 1) ? parts[1].trim() : "";
-
-            switch (commandWord) {
-
-            case Parser.COMMAND_LIST:
-                MessagePrinter.printListOfTasks(taskList);
-                break;
-
-            case Parser.COMMAND_MARK:
-                int index = Integer.parseInt(parts[1]);
-                TaskHandler.mark(index, taskList);
-                break;
-
-            case Parser.COMMAND_UNMARK:
-                index = Integer.parseInt(parts[1]);
-                TaskHandler.unmark(index, taskList);
-                break;
-
-            case Parser.COMMAND_EXIT:
-                MessagePrinter.printGoodbyeMessage();
-                return;
-
-            case Parser.COMMAND_TODO:
-                TaskHandler.handleToDo(description, taskList);
-                break;
-
-            case Parser.COMMAND_DEADLINE:
-                TaskHandler.handleDeadline(description, taskList);
-                break;
-
-            case Parser.COMMAND_EVENT:
-                TaskHandler.handleEvent(description, taskList);
-                break;
-
-            default:
-                Task t = new Task(userCommand);
-                taskList.addTask(t);
-                MessagePrinter.printAddedMessage(t, taskList);
+            try {
+                run(userCommand);
+            } catch (NimbusException e) {
+                MessagePrinter.printLine();
+                System.out.println(e.getMessage());
+                MessagePrinter.printLine();
             }
+        }
+    }
 
+    private static void run(String userCommand) throws NimbusException {
+        String[] parts = userCommand.split(" ", 2);
+        String commandWord = parts[0];
+        String description = (parts.length > 1) ? parts[1].trim() : "";
+
+        switch (commandWord) {
+
+        case Parser.COMMAND_LIST:
+            MessagePrinter.printListOfTasks(taskList);
+            break;
+
+        case Parser.COMMAND_MARK:
+            int index = Integer.parseInt(parts[1]);
+            TaskHandler.mark(index, taskList);
+            break;
+
+        case Parser.COMMAND_UNMARK:
+            int idx = Integer.parseInt(parts[1]);
+            TaskHandler.unmark(idx, taskList);
+            break;
+
+        case Parser.COMMAND_EXIT:
+            MessagePrinter.printGoodbyeMessage();
+            return;
+
+        case Parser.COMMAND_TODO:
+            TaskHandler.handleToDo(description, taskList);
+            break;
+
+        case Parser.COMMAND_DEADLINE:
+            TaskHandler.handleDeadline(description, taskList);
+            break;
+
+        case Parser.COMMAND_EVENT:
+            TaskHandler.handleEvent(description, taskList);
+            break;
+
+        default:
+            Task t = new Task(userCommand);
+            taskList.addTask(t);
+            MessagePrinter.printAddedMessage(t, taskList);
         }
     }
 
