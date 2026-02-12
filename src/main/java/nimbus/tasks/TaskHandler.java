@@ -1,3 +1,8 @@
+package nimbus.tasks;
+
+import nimbus.exceptions.NimbusException;
+import nimbus.ui.MessagePrinter;
+
 public class TaskHandler {
 
     public static void mark(int index, TaskList taskList) throws NimbusException {
