@@ -50,6 +50,15 @@ public class MessagePrinter {
         MessagePrinter.printLine();
     }
 
+    public static void printDeletedMessage(Task task, TaskList taskList) {
+        int count = taskList.getTaskCount();
+        printLine();
+        System.out.println("    Noted. I've removed this task:");
+        System.out.println("    " + task.toString());
+        System.out.println("    Now you have " + count + " tasks in the list");
+        printLine();
+    }
+
     public static void printMarkedTask(Task task) {
         printLine();
         System.out.println(MARKED_MESSAGE);

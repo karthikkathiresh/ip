@@ -5,10 +5,22 @@ import nimbus.ui.MessagePrinter;
 
 public class TaskHandler {
 
+    public static void delete(int index, TaskList taskList) throws NimbusException {
+        int zeroBasedIndex = index - 1;
+        if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
+            throw new NimbusException("    OOPS!!! Task number " + index + "does not exist!");
+        }
+
+        Task task = taskList.getTask(zeroBasedIndex);
+        taskList.removeTask(task);
+        MessagePrinter.printDeletedMessage(task, taskList);
+
+    }
+
     public static void mark(int index, TaskList taskList) throws NimbusException {
         int zeroBasedIndex = index - 1;
         if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
-            throw new NimbusException("    OOPS!!! Task number " + index + " does not exist");
+            throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
         }
 
         Task task = taskList.getTask(zeroBasedIndex);

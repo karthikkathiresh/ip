@@ -17,6 +17,11 @@ public class TaskList {
         taskCount++;
     }
 
+    public void removeTask(Task t) {
+        tasks.remove(t);
+        taskCount--;
+    }
+
     public Task getTask(int index) {
         return tasks.get(index);
     }
