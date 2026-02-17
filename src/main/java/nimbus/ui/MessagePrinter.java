@@ -13,8 +13,10 @@ public class MessagePrinter {
     public static final String UNMARKED_MESSAGE = "    OK, I've marked this task as not done yet:";
     public static final String INVALID_MESSAGE = "    Invalid task index. Try again!";
     public static final String ADDED_MESSAGE = "    Got it. I've added this task:";
+    public static final String DELETED_MESSAGE = "    Noted. I've removed this task:";
     public static final String MARKED_ERROR_MESSAGE = "    Task is already marked as done!";
     public static final String UNMARKED_ERROR_MESSAGE = "    Task is already marked as undone!";
+
 
     public static void printLine() {
         System.out.println(HORIZONTAL_LINE);
@@ -53,7 +55,7 @@ public class MessagePrinter {
     public static void printDeletedMessage(Task task, TaskList taskList) {
         int count = taskList.getTaskCount();
         printLine();
-        System.out.println("    Noted. I've removed this task:");
+        System.out.println(DELETED_MESSAGE);
         System.out.println("    " + task.toString());
         System.out.println("    Now you have " + count + " tasks in the list");
         printLine();

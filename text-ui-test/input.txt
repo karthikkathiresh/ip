@@ -8,5 +8,13 @@ mark 2
 mark 4
 list
 unmark 2
+deadline CG2271 lab /by Friday 9am
+list
+unmark 1
+mark 4
+todo read GEC1013 notes
+delete 3
+list
+delete 4
 list
 bye

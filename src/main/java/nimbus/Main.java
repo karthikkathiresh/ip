@@ -18,7 +18,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         MessagePrinter.printWelcomeMessage();
 
-        while (true) {
+        while (in.hasNextLine()) {
             userCommand = in.nextLine().trim();
 
             if (userCommand.isEmpty()) {
