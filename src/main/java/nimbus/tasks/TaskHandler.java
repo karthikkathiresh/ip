@@ -31,7 +31,7 @@ public class TaskHandler {
     public static void handleToDo(String description, TaskList taskList) throws NimbusException {
 
         if (description.isEmpty()) {
-            throw new NimbusException("OOPS!!! The description of a todo cannot be empty.");
+            throw new NimbusException("    OOPS!!! The description of a todo cannot be empty.");
         }
 
         ToDo t = new ToDo(description);

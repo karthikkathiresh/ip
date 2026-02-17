@@ -84,7 +84,7 @@ public class Parser {
         }
 
         if (toIndex + 3 >= command.length()) {
-            throw new NimbusException("    OOPS!!! THe '/to' time cannot be empty.");
+            throw new NimbusException("    OOPS!!! The '/to' time cannot be empty.");
         }
 
         return command.substring(toIndex + 3).trim();

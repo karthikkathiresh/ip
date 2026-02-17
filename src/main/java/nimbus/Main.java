@@ -58,7 +58,7 @@ public class Main {
 
         case Parser.COMMAND_EXIT:
             MessagePrinter.printGoodbyeMessage();
-            return;
+            System.exit(0);
 
         case Parser.COMMAND_TODO:
             TaskHandler.handleToDo(description, taskList);
