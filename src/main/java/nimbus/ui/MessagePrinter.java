@@ -13,6 +13,8 @@ public class MessagePrinter {
     public static final String UNMARKED_MESSAGE = "    OK, I've marked this task as not done yet:";
     public static final String INVALID_MESSAGE = "    Invalid task index. Try again!";
     public static final String ADDED_MESSAGE = "    Got it. I've added this task:";
+    public static final String MARKED_ERROR_MESSAGE = "    Task is already marked as done!";
+    public static final String UNMARKED_ERROR_MESSAGE = "    Task is already marked as undone!";
 
     public static void printLine() {
         System.out.println(HORIZONTAL_LINE);
@@ -62,7 +64,15 @@ public class MessagePrinter {
         printLine();
     }
 
-    public static void printError() {
-        System.out.println(INVALID_MESSAGE);
+    public static void printMarkedError() {
+        printLine();
+        System.out.println(MARKED_ERROR_MESSAGE);
+        printLine();
+    }
+
+    public static void printUnmarkedError() {
+        printLine();
+        System.out.println(UNMARKED_ERROR_MESSAGE);
+        printLine();
     }
 }

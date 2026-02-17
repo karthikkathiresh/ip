@@ -12,8 +12,13 @@ public class TaskHandler {
         }
 
         Task task = taskList.getTask(zeroBasedIndex);
-        task.setIsDone(true);
-        MessagePrinter.printMarkedTask(task);
+
+        if (task.getIsDone().equals(true)) {
+            MessagePrinter.printMarkedError();
+        } else {
+            task.setIsDone(true);
+            MessagePrinter.printMarkedTask(task);
+        }
     }
 
     public static void unmark(int index, TaskList taskList) throws NimbusException {
@@ -24,8 +29,13 @@ public class TaskHandler {
         }
 
         Task task = taskList.getTask(zeroBasedIndex);
-        task.setIsDone(false);
-        MessagePrinter.printUnmarkedTask(task);
+
+        if (task.getIsDone().equals(false)) {
+            MessagePrinter.printUnmarkedError();
+        } else {
+            task.setIsDone(false);
+            MessagePrinter.printUnmarkedTask(task);
+        }
     }
 
     public static void handleToDo(String description, TaskList taskList) throws NimbusException {
