@@ -1,6 +1,6 @@
 package nimbus;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 
@@ -15,10 +15,25 @@ public class Main {
 
     private static TaskList taskList = new TaskList();
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
         File f = new File("data/nimbus.txt");
-        FileReader.read(f, taskList);
+
+        try {
+            if (f.getParentFile() != null && !f.getParentFile().exists()) {
+                f.getParentFile().mkdirs();
+            }
+
+            if (!f.exists()) {
+                f.createNewFile();
+                System.out.println("No existing file found. Created a new one at data/nimbus.txt!");
+            } else {
+                FileReader.read(f, taskList);
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while setting up the save file: " + e.getMessage());
+        }
 
         String userCommand;
         Scanner in = new Scanner(System.in);
