@@ -31,4 +31,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
     }
+
+    public String toSaveFormat() {
+        int doneNumber = (isDone) ? 1 : 0;
+        return "E | " + doneNumber + " | " + description + " | " + from + "-" + to;
+    }
 }

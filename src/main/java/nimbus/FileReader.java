@@ -11,7 +11,7 @@ import nimbus.tasks.ToDo;
 
 public class FileReader {
 
-    static void read(File f, TaskList taskList) throws FileNotFoundException {
+    public static void read(File f, TaskList taskList) throws FileNotFoundException {
         Scanner s = new Scanner(f);
 
         while (s.hasNextLine()) {

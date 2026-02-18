@@ -47,8 +47,8 @@ public class Main {
             }
 
             try {
-                run(userCommand);
-            } catch (NimbusException e) {
+                run(userCommand, f);
+            } catch (NimbusException | IOException e) {
                 MessagePrinter.printLine();
                 System.out.println(e.getMessage());
                 MessagePrinter.printLine();
@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    private static void run(String userCommand) throws NimbusException {
+    private static void run(String userCommand, File f) throws NimbusException, IOException {
         String[] parts = userCommand.split(" ", 2);
         String commandWord = parts[0];
         String description = (parts.length > 1) ? parts[1].trim() : "";
@@ -79,6 +79,7 @@ public class Main {
 
         case Parser.COMMAND_EXIT:
             MessagePrinter.printGoodbyeMessage();
+            FileSaver.write(f, taskList);
             System.exit(0);
 
         case Parser.COMMAND_TODO:
