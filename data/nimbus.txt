@@ -4,6 +4,4 @@ E | 0 | project meeting | Aug 6th 2-4pm
 T | 1 | join sports club
 T | 0 | task 89
 E | 1 | clean-up | monday-tuesday
-T | 0 | homework
 D | 1 | ee4415 lab | 9th August
-E | 1 | CFG talk | Monday 9pm-Monday 10pm
