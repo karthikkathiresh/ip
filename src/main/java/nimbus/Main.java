@@ -1,6 +1,8 @@
 package nimbus;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.File;
 
 import nimbus.exceptions.NimbusException;
 import nimbus.tasks.Parser;
@@ -13,7 +15,11 @@ public class Main {
 
     private static TaskList taskList = new TaskList();
 
-    public static void main(String[] args) throws NimbusException {
+    public static void main(String[] args) throws FileNotFoundException {
+
+        File f = new File("data/nimbus.txt");
+        FileReader.read(f, taskList);
+
         String userCommand;
         Scanner in = new Scanner(System.in);
         MessagePrinter.printWelcomeMessage();
