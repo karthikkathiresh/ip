@@ -11,6 +11,7 @@ public class Parser {
     public static final String COMMAND_TODO = "todo";
     public static final String COMMAND_DEADLINE = "deadline";
     public static final String COMMAND_EVENT = "event";
+    public static final String COMMAND_DELETE = "delete";
 
     public static final String DELIMITED_FROM = "/from";
     public static final String DELIMITER_BY = "/by";

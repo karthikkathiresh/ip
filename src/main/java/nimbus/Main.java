@@ -18,7 +18,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         MessagePrinter.printWelcomeMessage();
 
-        while (true) {
+        while (in.hasNextLine()) {
             userCommand = in.nextLine().trim();
 
             if (userCommand.isEmpty()) {
@@ -46,14 +46,19 @@ public class Main {
             MessagePrinter.printListOfTasks(taskList);
             break;
 
-        case Parser.COMMAND_MARK:
+        case Parser.COMMAND_DELETE:
             int index = Integer.parseInt(parts[1]);
+            TaskHandler.delete(index, taskList);
+            break;
+
+        case Parser.COMMAND_MARK:
+            index = Integer.parseInt(parts[1]);
             TaskHandler.mark(index, taskList);
             break;
 
         case Parser.COMMAND_UNMARK:
-            int idx = Integer.parseInt(parts[1]);
-            TaskHandler.unmark(idx, taskList);
+            index = Integer.parseInt(parts[1]);
+            TaskHandler.unmark(index, taskList);
             break;
 
         case Parser.COMMAND_EXIT:
