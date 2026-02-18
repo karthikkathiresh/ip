@@ -1,6 +1,8 @@
 package nimbus;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.io.File;
 
 import nimbus.exceptions.NimbusException;
 import nimbus.tasks.Parser;
@@ -13,7 +15,26 @@ public class Main {
 
     private static TaskList taskList = new TaskList();
 
-    public static void main(String[] args) throws NimbusException {
+    public static void main(String[] args) {
+
+        File f = new File("data/nimbus.txt");
+
+        try {
+            if (f.getParentFile() != null && !f.getParentFile().exists()) {
+                f.getParentFile().mkdirs();
+            }
+
+            if (!f.exists()) {
+                f.createNewFile();
+                System.out.println("No existing file found. Created a new one at data/nimbus.txt!");
+            } else {
+                FileReader.read(f, taskList);
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while setting up the save file: " + e.getMessage());
+        }
+
         String userCommand;
         Scanner in = new Scanner(System.in);
         MessagePrinter.printWelcomeMessage();
@@ -26,8 +47,8 @@ public class Main {
             }
 
             try {
-                run(userCommand);
-            } catch (NimbusException e) {
+                run(userCommand, f);
+            } catch (NimbusException | IOException e) {
                 MessagePrinter.printLine();
                 System.out.println(e.getMessage());
                 MessagePrinter.printLine();
@@ -35,7 +56,7 @@ public class Main {
         }
     }
 
-    private static void run(String userCommand) throws NimbusException {
+    private static void run(String userCommand, File f) throws NimbusException, IOException {
         String[] parts = userCommand.split(" ", 2);
         String commandWord = parts[0];
         String description = (parts.length > 1) ? parts[1].trim() : "";
@@ -63,6 +84,7 @@ public class Main {
 
         case Parser.COMMAND_EXIT:
             MessagePrinter.printGoodbyeMessage();
+            FileSaver.write(f, taskList);
             System.exit(0);
 
         case Parser.COMMAND_TODO:

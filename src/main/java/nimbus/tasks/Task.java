@@ -6,7 +6,6 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
     }
 
     public void setIsDone(boolean isDone) {
@@ -31,5 +30,9 @@ public class Task {
 
     public String toString() {
         return this.getStatusIcon() + " " + this.description;
+    }
+
+    public String toSaveFormat() {
+        return "";
     }
 }

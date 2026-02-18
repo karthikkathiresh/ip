@@ -21,4 +21,9 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
+
+    public String toSaveFormat() {
+        int doneNumber = (isDone) ? 1 : 0;
+        return "D | " + doneNumber + " | " + description + " | " + by;
+    }
 }

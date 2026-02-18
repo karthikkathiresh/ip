@@ -10,4 +10,9 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    public String toSaveFormat() {
+        int doneNumber = (isDone) ? 1 : 0;
+        return "T | " + doneNumber + " | " + description;
+    }
 }
