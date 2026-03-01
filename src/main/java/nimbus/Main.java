@@ -70,18 +70,15 @@ public class Main {
             break;
 
         case Parser.COMMAND_DELETE:
-            int index = Integer.parseInt(parts[1]);
-            TaskHandler.delete(index, taskList);
+            TaskHandler.delete(description, taskList);
             break;
 
         case Parser.COMMAND_MARK:
-            index = Integer.parseInt(parts[1]);
-            TaskHandler.mark(index, taskList);
+            TaskHandler.mark(description, taskList);
             break;
 
         case Parser.COMMAND_UNMARK:
-            index = Integer.parseInt(parts[1]);
-            TaskHandler.unmark(index, taskList);
+            TaskHandler.unmark(description, taskList);
             break;
 
         case Parser.COMMAND_EXIT:

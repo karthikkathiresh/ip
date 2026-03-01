@@ -2,10 +2,9 @@ package nimbus.ui;
 
 import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
-
 public class MessagePrinter {
 
-    public static final String HORIZONTAL_LINE = "    _____________________________________________";
+    public static final String HORIZONTAL_LINE = "    _____________________________________________________";
     public static final String WELCOME_MESSAGE = "    Hello! I'm Nimbus\n    What can I do for you?";
     public static final String GOODBYE_MESSAGE = "    Bye. Hope to see you again soon!";
     public static final String LIST_MESSAGE = "    Here are the tasks in your list:";

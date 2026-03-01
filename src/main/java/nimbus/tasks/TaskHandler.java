@@ -5,7 +5,12 @@ import nimbus.ui.MessagePrinter;
 
 public class TaskHandler {
 
-    public static void delete(int index, TaskList taskList) throws NimbusException {
+    public static void delete(String description, TaskList taskList) throws NimbusException {
+        if (description.isEmpty()) {
+            throw new NimbusException("    OOPS!!! Specify the task number!");
+        }
+
+        int index = Integer.parseInt(description);
         int zeroBasedIndex = index - 1;
         if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
             throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
@@ -17,7 +22,12 @@ public class TaskHandler {
 
     }
 
-    public static void mark(int index, TaskList taskList) throws NimbusException {
+    public static void mark(String description, TaskList taskList) throws NimbusException {
+        if (description.isEmpty()) {
+            throw new NimbusException("    OOPS!!! Specify the task number!");
+        }
+
+        int index = Integer.parseInt(description);
         int zeroBasedIndex = index - 1;
         if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
             throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
@@ -33,7 +43,12 @@ public class TaskHandler {
         }
     }
 
-    public static void unmark(int index, TaskList taskList) throws NimbusException {
+    public static void unmark(String description, TaskList taskList) throws NimbusException {
+        if (description.isEmpty()) {
+            throw new NimbusException("    OOPS!!! Specify the task number!");
+        }
+
+        int index = Integer.parseInt(description);
         int zeroBasedIndex = index - 1;
 
         if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
@@ -62,6 +77,10 @@ public class TaskHandler {
     }
 
     public static void handleDeadline(String description, TaskList taskList) throws NimbusException {
+        if (description.isEmpty()) {
+            throw new NimbusException("    OOPS!! The description of a deadline cannot be empty!");
+        }
+
         String desc = Parser.extractDescriptionForDeadline(description);
         String by = Parser.extractDeadline(description);
         Deadline d = new Deadline(desc, by);
@@ -70,6 +89,10 @@ public class TaskHandler {
     }
 
     public static void handleEvent(String command, TaskList taskList) throws NimbusException {
+        if (command.isEmpty()) {
+            throw new NimbusException("    OOPS!! The description of an event cannot be empty!");
+        }
+
         String description = Parser.extractDescriptionForEvent(command);
         String from = Parser.extractFrom(command);
         String to = Parser.extractTo(command);
