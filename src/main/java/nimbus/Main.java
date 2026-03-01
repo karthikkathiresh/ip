@@ -102,9 +102,7 @@ public class Main {
             break;
 
         default:
-            Task t = new Task(userCommand);
-            taskList.addTask(t);
-            MessagePrinter.printAddedMessage(t, taskList);
+            MessagePrinter.printInvalidTaskMessage();
         }
     }
 

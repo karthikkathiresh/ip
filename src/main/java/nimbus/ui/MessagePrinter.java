@@ -16,7 +16,7 @@ public class MessagePrinter {
     public static final String DELETED_MESSAGE = "    Noted. I've removed this task:";
     public static final String MARKED_ERROR_MESSAGE = "    Task is already marked as done!";
     public static final String UNMARKED_ERROR_MESSAGE = "    Task is already marked as undone!";
-
+    public static final String INVALID_TASK_MESSAGE = "    Invalid Task Name! Try again!";
 
     public static void printLine() {
         System.out.println(HORIZONTAL_LINE);
@@ -84,6 +84,12 @@ public class MessagePrinter {
     public static void printUnmarkedError() {
         printLine();
         System.out.println(UNMARKED_ERROR_MESSAGE);
+        printLine();
+    }
+
+    public static void printInvalidTaskMessage() {
+        printLine();
+        System.out.println(INVALID_TASK_MESSAGE);
         printLine();
     }
 }

@@ -8,7 +8,7 @@ public class TaskHandler {
     public static void delete(int index, TaskList taskList) throws NimbusException {
         int zeroBasedIndex = index - 1;
         if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
-            throw new NimbusException("    OOPS!!! Task number " + index + "does not exist!");
+            throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
         }
 
         Task task = taskList.getTask(zeroBasedIndex);
