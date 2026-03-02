@@ -8,16 +8,21 @@ import nimbus.exceptions.NimbusException;
 import nimbus.storage.FileReader;
 import nimbus.storage.FileSaver;
 import nimbus.tasks.Parser;
-import nimbus.tasks.Task;
 import nimbus.tasks.TaskHandler;
 import nimbus.tasks.TaskList;
-import nimbus.ui.MessagePrinter;
+import nimbus.ui.Ui;
 
-public class Main {
+public class Nimbus {
 
-    private static TaskList taskList = new TaskList();
+    private static TaskList taskList;
+
+    public Nimbus() {
+        taskList = new TaskList();
+    }
 
     public static void main(String[] args) {
+
+        new Nimbus();
 
         File f = new File("data/nimbus.txt");
 
@@ -39,7 +44,7 @@ public class Main {
 
         String userCommand;
         Scanner in = new Scanner(System.in);
-        MessagePrinter.printWelcomeMessage();
+        Ui.printWelcomeMessage();
 
         while (in.hasNextLine()) {
             userCommand = in.nextLine().trim();
@@ -51,9 +56,9 @@ public class Main {
             try {
                 run(userCommand, f);
             } catch (NimbusException | IOException e) {
-                MessagePrinter.printLine();
+                Ui.printLine();
                 System.out.println(e.getMessage());
-                MessagePrinter.printLine();
+                Ui.printLine();
             }
         }
     }
@@ -66,7 +71,7 @@ public class Main {
         switch (commandWord) {
 
         case Parser.COMMAND_LIST:
-            MessagePrinter.printListOfTasks(taskList);
+            Ui.printListOfTasks(taskList);
             break;
 
         case Parser.COMMAND_DELETE:
@@ -82,7 +87,7 @@ public class Main {
             break;
 
         case Parser.COMMAND_EXIT:
-            MessagePrinter.printGoodbyeMessage();
+            Ui.printGoodbyeMessage();
             FileSaver.write(f, taskList);
             System.exit(0);
 
@@ -99,7 +104,7 @@ public class Main {
             break;
 
         default:
-            MessagePrinter.printInvalidTaskMessage();
+            Ui.printInvalidTaskMessage();
         }
     }
 
