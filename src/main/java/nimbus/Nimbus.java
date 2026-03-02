@@ -18,8 +18,8 @@ public class Nimbus {
     private static Ui ui;
 
     public Nimbus() {
-        this.taskList = new TaskList();
-        this.ui = new Ui();
+        taskList = new TaskList();
+        ui = new Ui();
     }
 
     public static void main(String[] args) {
@@ -45,11 +45,10 @@ public class Nimbus {
         }
 
         String userCommand;
-        Scanner in = new Scanner(System.in);
         ui.printWelcomeMessage();
 
-        while (in.hasNextLine()) {
-            userCommand = in.nextLine().trim();
+        while (true) {
+            userCommand = ui.getUserCommand();
 
             if (userCommand.isEmpty()) {
                 continue;

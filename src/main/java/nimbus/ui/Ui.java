@@ -20,6 +20,7 @@ public class Ui {
     public static final String MARKED_ERROR_MESSAGE = INDENT + "Task is already marked as done!";
     public static final String UNMARKED_ERROR_MESSAGE = INDENT + "Task is already marked as undone!";
     public static final String INVALID_TASK_MESSAGE = INDENT + "Invalid Task Name! Try again!";
+    public static final String USER_COMMAND_PROMPT = INDENT + "Enter Command: ";
 
     private final Scanner in;
     private final PrintStream out;
@@ -30,7 +31,7 @@ public class Ui {
     }
 
     public String getUserCommand() {
-        out.print("    Enter Command: ");
+        out.print(USER_COMMAND_PROMPT);
         return in.nextLine().trim();
     }
 
