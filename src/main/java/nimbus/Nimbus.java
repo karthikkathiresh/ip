@@ -15,9 +15,11 @@ import nimbus.ui.Ui;
 public class Nimbus {
 
     private static TaskList taskList;
+    private static Ui ui;
 
     public Nimbus() {
-        taskList = new TaskList();
+        this.taskList = new TaskList();
+        this.ui = new Ui();
     }
 
     public static void main(String[] args) {
@@ -44,7 +46,7 @@ public class Nimbus {
 
         String userCommand;
         Scanner in = new Scanner(System.in);
-        Ui.printWelcomeMessage();
+        ui.printWelcomeMessage();
 
         while (in.hasNextLine()) {
             userCommand = in.nextLine().trim();
@@ -71,40 +73,40 @@ public class Nimbus {
         switch (commandWord) {
 
         case Parser.COMMAND_LIST:
-            Ui.printListOfTasks(taskList);
+            ui.printListOfTasks(taskList);
             break;
 
         case Parser.COMMAND_DELETE:
-            TaskHandler.delete(description, taskList);
+            TaskHandler.delete(description, taskList, ui);
             break;
 
         case Parser.COMMAND_MARK:
-            TaskHandler.mark(description, taskList);
+            TaskHandler.mark(description, taskList, ui);
             break;
 
         case Parser.COMMAND_UNMARK:
-            TaskHandler.unmark(description, taskList);
+            TaskHandler.unmark(description, taskList, ui);
             break;
 
         case Parser.COMMAND_EXIT:
-            Ui.printGoodbyeMessage();
+            ui.printGoodbyeMessage();
             FileSaver.write(f, taskList);
             System.exit(0);
 
         case Parser.COMMAND_TODO:
-            TaskHandler.handleToDo(description, taskList);
+            TaskHandler.handleToDo(description, taskList, ui);
             break;
 
         case Parser.COMMAND_DEADLINE:
-            TaskHandler.handleDeadline(description, taskList);
+            TaskHandler.handleDeadline(description, taskList, ui);
             break;
 
         case Parser.COMMAND_EVENT:
-            TaskHandler.handleEvent(description, taskList);
+            TaskHandler.handleEvent(description, taskList, ui);
             break;
 
         default:
-            Ui.printInvalidTaskMessage();
+            ui.printInvalidTaskMessage();
         }
     }
 

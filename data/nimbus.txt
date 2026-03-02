@@ -1,7 +1,6 @@
-T | 0 | read book
 D | 0 | return book | June 6th
 E | 0 | project meeting | Aug 6th 2-4pm
 T | 1 | join sports club
-T | 0 | task 89
 E | 1 | clean-up | monday-tuesday
 D | 1 | ee4415 lab | 9th August
+T | 0 | mark98

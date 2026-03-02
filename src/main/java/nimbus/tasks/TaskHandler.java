@@ -1,11 +1,11 @@
 package nimbus.tasks;
 
 import nimbus.exceptions.NimbusException;
-import nimbus.ui.MessagePrinter;
+import nimbus.ui.Ui;
 
 public class TaskHandler {
 
-    public static void delete(String description, TaskList taskList) throws NimbusException {
+    public static void delete(String description, TaskList taskList, Ui ui) throws NimbusException {
         if (description.isEmpty()) {
             throw new NimbusException("    OOPS!!! Specify the task number!");
         }
@@ -18,11 +18,11 @@ public class TaskHandler {
 
         Task task = taskList.getTask(zeroBasedIndex);
         taskList.removeTask(task);
-        MessagePrinter.printDeletedMessage(task, taskList);
+        ui.printDeletedMessage(task, taskList);
 
     }
 
-    public static void mark(String description, TaskList taskList) throws NimbusException {
+    public static void mark(String description, TaskList taskList, Ui ui) throws NimbusException {
         if (description.isEmpty()) {
             throw new NimbusException("    OOPS!!! Specify the task number!");
         }
@@ -36,14 +36,14 @@ public class TaskHandler {
         Task task = taskList.getTask(zeroBasedIndex);
 
         if (task.getIsDone().equals(true)) {
-            MessagePrinter.printMarkedError();
+            ui.printMarkedError();
         } else {
             task.setIsDone(true);
-            MessagePrinter.printMarkedTask(task);
+            ui.printMarkedTask(task);
         }
     }
 
-    public static void unmark(String description, TaskList taskList) throws NimbusException {
+    public static void unmark(String description, TaskList taskList, Ui ui) throws NimbusException {
         if (description.isEmpty()) {
             throw new NimbusException("    OOPS!!! Specify the task number!");
         }
@@ -58,14 +58,14 @@ public class TaskHandler {
         Task task = taskList.getTask(zeroBasedIndex);
 
         if (task.getIsDone().equals(false)) {
-            MessagePrinter.printUnmarkedError();
+            ui.printUnmarkedError();
         } else {
             task.setIsDone(false);
-            MessagePrinter.printUnmarkedTask(task);
+            ui.printUnmarkedTask(task);
         }
     }
 
-    public static void handleToDo(String description, TaskList taskList) throws NimbusException {
+    public static void handleToDo(String description, TaskList taskList, Ui ui) throws NimbusException {
 
         if (description.isEmpty()) {
             throw new NimbusException("    OOPS!!! The description of a todo cannot be empty.");
@@ -73,10 +73,10 @@ public class TaskHandler {
 
         ToDo t = new ToDo(description);
         taskList.addTask(t);
-        MessagePrinter.printAddedMessage(t, taskList);
+        ui.printAddedMessage(t, taskList);
     }
 
-    public static void handleDeadline(String description, TaskList taskList) throws NimbusException {
+    public static void handleDeadline(String description, TaskList taskList, Ui ui) throws NimbusException {
         if (description.isEmpty()) {
             throw new NimbusException("    OOPS!! The description of a deadline cannot be empty!");
         }
@@ -85,10 +85,10 @@ public class TaskHandler {
         String by = Parser.extractDeadline(description);
         Deadline d = new Deadline(desc, by);
         taskList.addTask(d);
-        MessagePrinter.printAddedMessage(d, taskList);
+        ui.printAddedMessage(d, taskList);
     }
 
-    public static void handleEvent(String command, TaskList taskList) throws NimbusException {
+    public static void handleEvent(String command, TaskList taskList, Ui ui) throws NimbusException {
         if (command.isEmpty()) {
             throw new NimbusException("    OOPS!! The description of an event cannot be empty!");
         }
@@ -98,6 +98,6 @@ public class TaskHandler {
         String to = Parser.extractTo(command);
         Event e = new Event(description, from, to);
         taskList.addTask(e);
-        MessagePrinter.printAddedMessage(e, taskList);
+        ui.printAddedMessage(e, taskList);
     }
 }
