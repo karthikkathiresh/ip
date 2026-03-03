@@ -13,9 +13,9 @@ import nimbus.ui.Ui;
 
 public class Nimbus {
 
-    public static TaskList taskList;
-    private static Ui ui;
-    private static Storage storage;
+    private TaskList taskList;
+    private Ui ui;
+    private Storage storage;
 
     public Nimbus(String filePath) {
         ui = new Ui();
@@ -30,36 +30,26 @@ public class Nimbus {
 
     }
 
-    public static void main(String[] args) {
-
-        new Nimbus("data/nimbus.txt");
-
-        String userCommand;
+    public void run() throws NimbusException, IOException {
         ui.printWelcomeMessage();
+        boolean isExit = false;
 
-        while (true) {
-            userCommand = ui.getUserCommand();
+        while (!isExit) {
+            String userCommand = ui.getUserCommand();
             if (userCommand.isEmpty()) {
                 continue;
             }
 
-            try {
-                run(userCommand);
-            } catch (NimbusException | IOException e) {
-                Ui.printLine();
-                System.out.println(e.getMessage());
-                Ui.printLine();
+            Command c = parse(userCommand);
+            c.execute(taskList, ui);
+            isExit = c.isExit();
+            if (isExit) {
+                storage.save(taskList);
             }
         }
     }
 
-    private static void run(String userCommand) throws NimbusException, IOException {
-        Command c = parse(userCommand);
-        c.execute(taskList, ui);
-        if (c.isExit()) {
-            storage.save(taskList);
-            System.exit(0);
-        }
+    public static void main(String[] args) throws NimbusException, IOException {
+        new Nimbus("data/nimbus.txt").run();
     }
-
 }
