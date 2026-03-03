@@ -4,6 +4,14 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 
+import nimbus.command.DeadlineCommand;
+import nimbus.command.DeleteCommand;
+import nimbus.command.EventCommand;
+import nimbus.command.ExitCommand;
+import nimbus.command.ListCommand;
+import nimbus.command.MarkCommand;
+import nimbus.command.ToDoCommand;
+import nimbus.command.UnmarkCommand;
 import nimbus.exceptions.NimbusException;
 import nimbus.storage.FileReader;
 import nimbus.storage.FileSaver;
@@ -14,7 +22,7 @@ import nimbus.ui.Ui;
 
 public class Nimbus {
 
-    private static TaskList taskList;
+    public static TaskList taskList;
     private static Ui ui;
 
     public Nimbus() {
@@ -69,39 +77,45 @@ public class Nimbus {
         String commandWord = parts[0];
         String description = (parts.length > 1) ? parts[1].trim() : "";
 
+
         switch (commandWord) {
 
         case Parser.COMMAND_LIST:
-            ui.printListOfTasks(taskList);
+            new ListCommand().execute(taskList, ui);
             break;
 
         case Parser.COMMAND_DELETE:
-            TaskHandler.delete(description, taskList, ui);
+            new DeleteCommand(description).execute(taskList, ui);
             break;
 
         case Parser.COMMAND_MARK:
-            TaskHandler.mark(description, taskList, ui);
+            new MarkCommand(description).execute(taskList, ui);
             break;
 
         case Parser.COMMAND_UNMARK:
-            TaskHandler.unmark(description, taskList, ui);
+            new UnmarkCommand(description).execute(taskList, ui);
             break;
 
         case Parser.COMMAND_EXIT:
-            ui.printGoodbyeMessage();
+            new ExitCommand().execute(taskList, ui);
             FileSaver.write(f, taskList);
             System.exit(0);
 
         case Parser.COMMAND_TODO:
-            TaskHandler.handleToDo(description, taskList, ui);
+            new ToDoCommand(description).execute(taskList, ui);
             break;
 
         case Parser.COMMAND_DEADLINE:
-            TaskHandler.handleDeadline(description, taskList, ui);
+            String descDeadline = Parser.extractDescriptionForDeadline(description);
+            String by = Parser.extractDeadline(description);
+            new DeadlineCommand(descDeadline, by).execute(taskList, ui);
             break;
 
         case Parser.COMMAND_EVENT:
-            TaskHandler.handleEvent(description, taskList, ui);
+            String descEvent = Parser.extractDescriptionForEvent(description);
+            String from = Parser.extractFrom(description);
+            String to = Parser.extractTo(description);
+            new EventCommand(descEvent, from, to).execute(taskList, ui);
             break;
 
         default:

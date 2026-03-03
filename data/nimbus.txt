@@ -4,3 +4,5 @@ T | 1 | join sports club
 E | 1 | clean-up | monday-tuesday
 D | 1 | ee4415 lab | 9th August
 T | 0 | mark98
+T | 1 | task 3
+T | 1 | task 7
