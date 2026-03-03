@@ -1,5 +1,14 @@
 package nimbus.tasks;
 
+import nimbus.command.Command;
+import nimbus.command.DeadlineCommand;
+import nimbus.command.DeleteCommand;
+import nimbus.command.EventCommand;
+import nimbus.command.ExitCommand;
+import nimbus.command.ListCommand;
+import nimbus.command.MarkCommand;
+import nimbus.command.ToDoCommand;
+import nimbus.command.UnmarkCommand;
 import nimbus.exceptions.NimbusException;
 
 public class Parser {
@@ -89,5 +98,46 @@ public class Parser {
         }
 
         return command.substring(toIndex + 3).trim();
+    }
+
+    public static Command parse(String userCommand) throws NimbusException {
+        String[] parts = userCommand.split(" ", 2);
+        String commandWord = parts[0];
+        String description = (parts.length > 1) ? parts[1].trim() : "";
+
+        switch (commandWord) {
+
+        case COMMAND_LIST:
+            return new ListCommand();
+
+        case COMMAND_DELETE:
+            return new DeleteCommand(description);
+
+        case COMMAND_MARK:
+            return new MarkCommand(description);
+
+        case COMMAND_UNMARK:
+            return new UnmarkCommand(description);
+
+        case COMMAND_TODO:
+            return new ToDoCommand(description);
+
+        case COMMAND_DEADLINE:
+            String descriptionDeadline = extractDescriptionForDeadline(description);
+            String by = extractDeadline(description);
+            return new DeadlineCommand(descriptionDeadline, by);
+
+        case COMMAND_EVENT:
+            String descriptionEvent = extractDescriptionForEvent(description);
+            String from = extractFrom(description);
+            String to = extractTo(description);
+            return new EventCommand(descriptionEvent, from, to);
+
+        case COMMAND_EXIT:
+            return new ExitCommand();
+
+        default:
+            throw new NimbusException("    Invalid task name. Try again!");
+        }
     }
 }
