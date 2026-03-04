@@ -40,11 +40,15 @@ public class Nimbus {
                 continue;
             }
 
-            Command c = parse(userCommand);
-            c.execute(taskList, ui);
-            isExit = c.isExit();
-            if (isExit) {
-                storage.save(taskList);
+            try {
+                Command c = parse(userCommand);
+                c.execute(taskList, ui);
+                isExit = c.isExit();
+                if (isExit) {
+                    storage.save(taskList);
+                }
+            } catch (NimbusException e) {
+                ui.printToScreen(e.getMessage());
             }
         }
     }
