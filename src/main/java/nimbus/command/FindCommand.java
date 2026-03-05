@@ -1,6 +1,9 @@
 package nimbus.command;
 
+import java.util.ArrayList;
+
 import nimbus.exceptions.NimbusException;
+import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 import nimbus.ui.Ui;
 
@@ -25,6 +28,7 @@ public class FindCommand extends Command {
             throw new NimbusException("    OOPS!!! Specify keyword properly!");
         }
 
-        ui.printListForFind(taskList, description);
+        ArrayList<Task> matchingTasks = taskList.findTasks(description);
+        ui.printListForFind(matchingTasks);
     }
 }

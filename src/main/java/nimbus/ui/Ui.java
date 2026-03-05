@@ -1,6 +1,7 @@
 package nimbus.ui;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import nimbus.tasks.Task;
@@ -91,28 +92,24 @@ public class Ui {
     /**
      * Displays all tasks that contain the specified search keyword.
      *
-     * @param taskList The list of tasks to search through.
-     * @param keyword The string to search for within the task descriptions.
+     * @param matchingTasks The list of tasks to display.
      */
-    public void printListForFind(TaskList taskList, String keyword) {
-        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+    public void printListForFind(ArrayList<Task> matchingTasks) {
+        if (matchingTasks.isEmpty()) {
+            printToScreen(
+                    HORIZONTAL_LINE,
+                    FIND_ERROR_MESSAGE,
+                    HORIZONTAL_LINE
+            );
+            return;
+        }
+
+        ArrayList<String> messages = new ArrayList<>();
         messages.add(HORIZONTAL_LINE);
         messages.add(FIND_MESSAGE);
-        int count = 1;
-        for (int index = 0; index < taskList.getTaskCount(); index++) {
-            Task task = taskList.getTask(index);
-            String description = task.getDescription().toLowerCase();
-            String searchKeyword = keyword.toLowerCase();
-            if (description.contains(searchKeyword)) {
-                messages.add(INDENT + count + ". " + task.toString());
-                count++;
-            }
-        }
-        messages.add(HORIZONTAL_LINE);
 
-        if (count == 1) {
-            printToScreen(FIND_ERROR_MESSAGE);
-            return;
+        for (int i = 0; i < matchingTasks.size(); i++) {
+            messages.add(INDENT + (i + 1) + ". " + matchingTasks.get(i).toString());
         }
 
         printToScreen(messages.toArray(new String[0]));
