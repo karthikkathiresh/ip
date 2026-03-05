@@ -6,6 +6,10 @@ import java.util.Scanner;
 import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 
+/**
+ * Represents the user interface of the Nimbus application.
+ * Responsible for receiving user inputs and displaying formatted messages to the console.
+ */
 public class Ui {
     public static final String INDENT = "    ";
     public static final String FIND_ERROR_MESSAGE = INDENT + "No matching tasks found!";
@@ -32,6 +36,11 @@ public class Ui {
         this.out = new PrintStream(System.out);
     }
 
+    /**
+     * Prompts the user for input and reads the next line from the console.
+     *
+     * @return The trimmed string entered by the user.
+     */
     public String getUserCommand() {
         out.print(USER_COMMAND_PROMPT);
         return in.nextLine().trim();
@@ -63,6 +72,11 @@ public class Ui {
         );
     }
 
+    /**
+     * Displays all tasks currently tracked in the application.
+     *
+     * @param taskList The list of tasks to be displayed.
+     */
     public void printListOfTasks(TaskList taskList) {
         java.util.ArrayList<String> messages = new java.util.ArrayList<>();
         messages.add(HORIZONTAL_LINE);
@@ -74,6 +88,12 @@ public class Ui {
         printToScreen(messages.toArray(new String[0]));
     }
 
+    /**
+     * Displays all tasks that contain the specified search keyword.
+     *
+     * @param taskList The list of tasks to search through.
+     * @param keyword The string to search for within the task descriptions.
+     */
     public void printListForFind(TaskList taskList, String keyword) {
         java.util.ArrayList<String> messages = new java.util.ArrayList<>();
         messages.add(HORIZONTAL_LINE);

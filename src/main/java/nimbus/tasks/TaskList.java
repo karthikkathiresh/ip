@@ -2,26 +2,49 @@ package nimbus.tasks;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the list of tasks tracked by the application.
+ * Provides methods to manipulate and access the tasks within the list.
+ */
 public class TaskList {
 
     private final ArrayList<Task> tasks;
     private int taskCount;
 
+    /**
+     * Constructs an empty TaskList.
+     */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
         this.taskCount = 0;
     }
 
-    public void addTask(Task t) {
-        tasks.add(t);
+    /**
+     * Adds a task to the list.
+     *
+     * @param task The task to be added.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
         taskCount++;
     }
 
-    public void removeTask(Task t) {
-        tasks.remove(t);
+    /**
+     * Removes a task from the list.
+     *
+     * @param task The task to be removed.
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
         taskCount--;
     }
 
+    /**
+     * Retrieves a task from the list based on its index.
+     *
+     * @param index The zero-based index of the task.
+     * @return The task at the specified index.
+     */
     public Task getTask(int index) {
         return tasks.get(index);
     }
