@@ -12,6 +12,9 @@ import nimbus.command.ToDoCommand;
 import nimbus.command.UnmarkCommand;
 import nimbus.exceptions.NimbusException;
 
+/**
+ * Parses raw user input into actionable Command objects and extracts specific task details.
+ */
 public class Parser {
 
     public static final String COMMAND_LIST = "list";
@@ -28,6 +31,13 @@ public class Parser {
     public static final String DELIMITED_TO = "/to";
     public static final String COMMAND_FIND = "find";
 
+    /**
+     * Extracts the description part of the deadline command.
+     *
+     * @param command The full user input string excluding the command word.
+     * @return The description of the deadline task.
+     * @throws NimbusException If the '/by' delimiter is missing or the description is empty.
+     */
     public static String extractDescriptionForDeadline(String command) throws NimbusException {
         int byIndex = command.indexOf(DELIMITER_BY);
 
@@ -44,6 +54,13 @@ public class Parser {
         return description;
     }
 
+    /**
+     * Extracts the date/time string of a deadline command.
+     *
+     * @param command The full user input string excluding the command word.
+     * @return The deadline date/time string.
+     * @throws NimbusException If the '/by' delimiter is missing or the time is empty.
+     */
     public static String extractDeadline(String command) throws NimbusException {
         int byIndex = command.indexOf(DELIMITER_BY);
 
@@ -58,6 +75,13 @@ public class Parser {
         return command.substring(byIndex + 3).trim();
     }
 
+    /**
+     * Extracts the description part of an event command.
+     *
+     * @param command The full user input string excluding the command word.
+     * @return The description of the event task.
+     * @throws NimbusException If the '/from' delimiter is missing or the description is empty.
+     */
     public static String extractDescriptionForEvent(String command) throws NimbusException {
         int fromIndex = command.indexOf(DELIMITED_FROM);
 
@@ -74,6 +98,13 @@ public class Parser {
         return description;
     }
 
+    /**
+     * Extracts the start time of an event command.
+     *
+     * @param command The full user input string excluding the command word.
+     * @return The start time string.
+     * @throws NimbusException If the '/from' or '/to' delimiters are missing, or the start time is empty.
+     */
     public static String extractFrom(String command) throws NimbusException {
         int fromIndex = command.indexOf(DELIMITED_FROM);
         int toIndex = command.indexOf(DELIMITED_TO);
@@ -88,6 +119,13 @@ public class Parser {
         return command.substring(fromIndex + 5, toIndex).trim();
     }
 
+    /**
+     * Extracts the end time of an event command.
+     *
+     * @param command The full user input string excluding the command word.
+     * @return The end time string.
+     * @throws NimbusException If the '/to' delimiter is missing or the end time is empty.
+     */
     public static String extractTo(String command) throws NimbusException {
         int toIndex = command.indexOf(DELIMITED_TO);
 
@@ -102,6 +140,13 @@ public class Parser {
         return command.substring(toIndex + 3).trim();
     }
 
+    /**
+     * Parses the full user input into a specific Command object.
+     *
+     * @param userCommand The complete text input entered by the user.
+     * @return A Command object corresponding to the parsed action.
+     * @throws NimbusException If the command word is unrecognized or incorrectly formatted.
+     */
     public static Command parse(String userCommand) throws NimbusException {
         String[] parts = userCommand.split(" ", 2);
         String commandWord = parts[0];
