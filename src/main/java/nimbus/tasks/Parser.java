@@ -149,7 +149,7 @@ public class Parser {
      */
     public static Command parse(String userCommand) throws NimbusException {
         String[] parts = userCommand.split(" ", 2);
-        String commandWord = parts[0];
+        String commandWord = parts[0].toLowerCase();
         String description = (parts.length > 1) ? parts[1].trim() : "";
 
         switch (commandWord) {
