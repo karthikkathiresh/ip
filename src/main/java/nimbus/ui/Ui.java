@@ -8,6 +8,7 @@ import nimbus.tasks.TaskList;
 
 public class Ui {
     public static final String INDENT = "    ";
+    public static final String FIND_ERROR_MESSAGE = INDENT + "No matching tasks found!";
     public static final String HORIZONTAL_LINE = INDENT + "_____________________________________________________";
     public static final String WELCOME_MESSAGE = INDENT + "Hello! I'm Nimbus\n    What can I do for you?";
     public static final String GOODBYE_MESSAGE = INDENT + "Bye. Hope to see you again soon!";
@@ -86,6 +87,12 @@ public class Ui {
             }
         }
         messages.add(HORIZONTAL_LINE);
+
+        if (count == 1) {
+            printToScreen(FIND_ERROR_MESSAGE);
+            return;
+        }
+
         printToScreen(messages.toArray(new String[0]));
     }
 
