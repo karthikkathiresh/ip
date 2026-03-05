@@ -100,9 +100,11 @@ public class Ui {
         messages.add(FIND_MESSAGE);
         int count = 1;
         for (int index = 0; index < taskList.getTaskCount(); index++) {
-            String taskDetails = taskList.getTask(index).toString();
-            if (taskDetails.contains(keyword)) {
-                messages.add(INDENT + count + ". " + taskDetails);
+            Task task = taskList.getTask(index);
+            String description = task.getDescription().toLowerCase();
+            String searchKeyword = keyword.toLowerCase();
+            if (description.contains(searchKeyword)) {
+                messages.add(INDENT + count + ". " + task.toString());
                 count++;
             }
         }
