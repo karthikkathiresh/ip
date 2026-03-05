@@ -20,7 +20,6 @@ public class Ui {
     public static final String LIST_MESSAGE = INDENT + "Here are the tasks in your list:";
     public static final String MARKED_MESSAGE = INDENT + "Nice! I've marked this task as done:";
     public static final String UNMARKED_MESSAGE = INDENT + "OK, I've marked this task as not done yet:";
-    public static final String INVALID_MESSAGE = INDENT + "Invalid task index. Try again!";
     public static final String ADDED_MESSAGE = INDENT + "Got it. I've added this task:";
     public static final String DELETED_MESSAGE = INDENT + "Noted. I've removed this task:";
     public static final String MARKED_ERROR_MESSAGE = INDENT + "Task is already marked as done!";
@@ -53,10 +52,6 @@ public class Ui {
         }
     }
 
-    public static void printLine() {
-        System.out.println(HORIZONTAL_LINE);
-    }
-
     public void printWelcomeMessage() {
         printToScreen(
                 HORIZONTAL_LINE,
@@ -79,7 +74,7 @@ public class Ui {
      * @param taskList The list of tasks to be displayed.
      */
     public void printListOfTasks(TaskList taskList) {
-        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        ArrayList<String> messages = new ArrayList<>();
         messages.add(HORIZONTAL_LINE);
         messages.add(LIST_MESSAGE);
         for (int index = 0; index < taskList.getTaskCount(); index++) {
@@ -171,14 +166,6 @@ public class Ui {
         printToScreen(
                 HORIZONTAL_LINE,
                 UNMARKED_ERROR_MESSAGE,
-                HORIZONTAL_LINE
-        );
-    }
-
-    public void printInvalidTaskMessage() {
-        printToScreen(
-                HORIZONTAL_LINE,
-                INVALID_TASK_MESSAGE,
                 HORIZONTAL_LINE
         );
     }

@@ -1,6 +1,5 @@
 package nimbus.tasks;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -28,19 +27,6 @@ public class Deadline extends Task {
         } catch (DateTimeParseException e) {
             this.byDate = null;
         }
-    }
-
-    public void setBy (String by) {
-        this.by = by;
-        try {
-            this.byDate = LocalDate.parse(by);
-        } catch (DateTimeParseException e) {
-            this.byDate = null;
-        }
-    }
-
-    public String getBy() {
-        return this.by;
     }
 
     @Override
