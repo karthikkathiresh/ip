@@ -5,6 +5,7 @@ import nimbus.command.DeadlineCommand;
 import nimbus.command.DeleteCommand;
 import nimbus.command.EventCommand;
 import nimbus.command.ExitCommand;
+import nimbus.command.FindCommand;
 import nimbus.command.ListCommand;
 import nimbus.command.MarkCommand;
 import nimbus.command.ToDoCommand;
@@ -25,6 +26,7 @@ public class Parser {
     public static final String DELIMITED_FROM = "/from";
     public static final String DELIMITER_BY = "/by";
     public static final String DELIMITED_TO = "/to";
+    public static final String COMMAND_FIND = "find";
 
     public static String extractDescriptionForDeadline(String command) throws NimbusException {
         int byIndex = command.indexOf(DELIMITER_BY);
@@ -135,6 +137,9 @@ public class Parser {
 
         case COMMAND_EXIT:
             return new ExitCommand();
+
+        case COMMAND_FIND:
+            return new FindCommand(description);
 
         default:
             throw new NimbusException("    Invalid task name. Try again!");

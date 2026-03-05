@@ -21,6 +21,7 @@ public class Ui {
     public static final String UNMARKED_ERROR_MESSAGE = INDENT + "Task is already marked as undone!";
     public static final String INVALID_TASK_MESSAGE = INDENT + "Invalid Task Name! Try again!";
     public static final String USER_COMMAND_PROMPT = INDENT + "Enter Command: ";
+    public static final String FIND_MESSAGE = INDENT + "Here are the matching tasks in your list:";
 
     private final Scanner in;
     private final PrintStream out;
@@ -67,6 +68,22 @@ public class Ui {
         messages.add(LIST_MESSAGE);
         for (int index = 0; index < taskList.getTaskCount(); index++) {
             messages.add(INDENT + (index + 1) + ". " + taskList.getTask(index).toString());
+        }
+        messages.add(HORIZONTAL_LINE);
+        printToScreen(messages.toArray(new String[0]));
+    }
+
+    public void printListForFind(TaskList taskList, String keyword) {
+        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        messages.add(HORIZONTAL_LINE);
+        messages.add(FIND_MESSAGE);
+        int count = 1;
+        for (int index = 0; index < taskList.getTaskCount(); index++) {
+            String taskDetails = taskList.getTask(index).toString();
+            if (taskDetails.contains(keyword)) {
+                messages.add(INDENT + count + ". " + taskDetails);
+                count++;
+            }
         }
         messages.add(HORIZONTAL_LINE);
         printToScreen(messages.toArray(new String[0]));
