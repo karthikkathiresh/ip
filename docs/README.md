@@ -23,7 +23,7 @@ Nimbus is an **app for managing tasks and is optimized for use via a Command Lin
 1. Ensure you have Java `17` or above installed in your Computer.
 2. Download the latest `nimbus.jar` from the releases.
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar nimbus.jar` command to run the application.
-4. Type the command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will display all tasks.
+4. Type the command in the command box and press Enter to execute it.
 
 --------------------------------------------------------------------------------------------------------------------
 
