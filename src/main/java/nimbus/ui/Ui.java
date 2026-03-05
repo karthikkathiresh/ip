@@ -8,6 +8,7 @@ import nimbus.tasks.TaskList;
 
 public class Ui {
     public static final String INDENT = "    ";
+    public static final String FIND_ERROR_MESSAGE = INDENT + "No matching tasks found!";
     public static final String HORIZONTAL_LINE = INDENT + "_____________________________________________________";
     public static final String WELCOME_MESSAGE = INDENT + "Hello! I'm Nimbus\n    What can I do for you?";
     public static final String GOODBYE_MESSAGE = INDENT + "Bye. Hope to see you again soon!";
@@ -21,6 +22,7 @@ public class Ui {
     public static final String UNMARKED_ERROR_MESSAGE = INDENT + "Task is already marked as undone!";
     public static final String INVALID_TASK_MESSAGE = INDENT + "Invalid Task Name! Try again!";
     public static final String USER_COMMAND_PROMPT = INDENT + "Enter Command: ";
+    public static final String FIND_MESSAGE = INDENT + "Here are the matching tasks in your list:";
 
     private final Scanner in;
     private final PrintStream out;
@@ -69,6 +71,28 @@ public class Ui {
             messages.add(INDENT + (index + 1) + ". " + taskList.getTask(index).toString());
         }
         messages.add(HORIZONTAL_LINE);
+        printToScreen(messages.toArray(new String[0]));
+    }
+
+    public void printListForFind(TaskList taskList, String keyword) {
+        java.util.ArrayList<String> messages = new java.util.ArrayList<>();
+        messages.add(HORIZONTAL_LINE);
+        messages.add(FIND_MESSAGE);
+        int count = 1;
+        for (int index = 0; index < taskList.getTaskCount(); index++) {
+            String taskDetails = taskList.getTask(index).toString();
+            if (taskDetails.contains(keyword)) {
+                messages.add(INDENT + count + ". " + taskDetails);
+                count++;
+            }
+        }
+        messages.add(HORIZONTAL_LINE);
+
+        if (count == 1) {
+            printToScreen(FIND_ERROR_MESSAGE);
+            return;
+        }
+
         printToScreen(messages.toArray(new String[0]));
     }
 
