@@ -1,30 +1,148 @@
 # Nimbus User Guide
 
-// Update the title above to match the actual product name
+Nimbus is a **desktop app for managing tasks, optimized for use via a Command Line Interface (CLI)**. If you can type fast, Nimbus can get your task management duties done faster than traditional GUI apps.
 
-// Product screenshot goes here
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Adding a ToDo task: `todo`](#adding-a-todo-task-todo)
+    * [Adding a Deadline task: `deadline`](#adding-a-deadline-task-deadline)
+    * [Adding an Event task: `event`](#adding-an-event-task-event)
+    * [Listing all tasks: `list`](#listing-all-tasks-list)
+    * [Marking a task as done: `mark`](#marking-a-task-as-done-mark)
+    * [Unmarking a task: `unmark`](#unmarking-a-task-unmark)
+    * [Deleting a task: `delete`](#deleting-a-task-delete)
+    * [Locating tasks by keyword: `find`](#locating-tasks-by-keyword-find)
+    * [Exiting the program: `bye`](#exiting-the-program-bye)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
-// Product intro goes here
+--------------------------------------------------------------------------------------------------------------------
 
-## Adding deadlines
+## Quick Start
 
-// Describe the action and its outcome.
+1. Ensure you have Java `17` or above installed in your Computer.
+2. Download the latest `nimbus.jar` from the releases.
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar nimbus.jar` command to run the application.
+4. Type the command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will display all tasks.
 
-// Give examples of usage
+--------------------------------------------------------------------------------------------------------------------
 
-Example: `keyword (optional arguments)`
+## Features
 
-// A description of the expected outcome goes here
+> **Notes about the command format:**
+> * Words in `<UPPER_CASE>` are the parameters to be supplied by the user.
+    >   e.g. in `todo <DESCRIPTION>`, `read book` is a parameter which can be used as `todo read book`.
+> * Command words are **case-insensitive**. `TODO`, `ToDo`, and `todo` are all treated as the same command.
 
-```
-expected output
-```
+### Adding a ToDo task: `todo`
 
-## Feature ABC
+Adds a basic task without any date or time constraints to the list.
 
-// Feature details
+**Format:** `todo <DESCRIPTION>`
 
+**Examples:**
+* `todo read book`
+* `todo finish CS2113 tutorial`
 
-## Feature XYZ
+### Adding a Deadline task: `deadline`
 
-// Feature details
+Adds a task that needs to be done before a specific date/time.
+
+**Format:** `deadline <DESCRIPTION> /by <DATE_OR_TIME>`
+
+**Examples:**
+* `deadline submit assignment /by Sunday 1159pm`
+* `deadline return library book /by 2026-08-09`
+
+### Adding an Event task: `event`
+
+Adds a task that starts and ends at a specific time.
+
+**Format:** `event <DESCRIPTION> /from <START_TIME> /to <END_TIME>`
+
+**Examples:**
+* `event team meeting /from Monday 2pm /to 4pm`
+* `event career fair /from 2026-03-01 /to 2026-03-03`
+
+### Listing all tasks: `list`
+
+Shows a list of all tasks currently tracked by Nimbus.
+
+**Format:** `list`
+
+### Marking a task as done: `mark`
+
+Marks a specified task in the list as completed.
+
+**Format:** `mark <INDEX>`
+* Marks the task at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, ...
+
+**Examples:**
+* `list` followed by `mark 2` marks the 2nd task in the list as completed.
+
+### Unmarking a task: `unmark`
+
+Marks a completed task as not done yet.
+
+**Format:** `unmark <INDEX>`
+* Unmarks the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+
+**Examples:**
+* `list` followed by `unmark 1` marks the 1st task in the list as incomplete.
+
+### Deleting a task: `delete`
+
+Removes a task from the list permanently.
+
+**Format:** `delete <INDEX>`
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+
+**Examples:**
+* `list` followed by `delete 3` deletes the 3rd task in the list.
+
+### Locating tasks by keyword: `find`
+
+Finds tasks whose descriptions contain the specified keyword.
+
+**Format:** `find <KEYWORD>`
+* The search is **case-insensitive**. e.g `book` will match `Book`.
+* Only the description of the task is searched.
+
+**Examples:**
+* `find book` returns `read book` and `return library book`.
+
+### Exiting the program: `bye`
+
+Exits the program and automatically saves your task list to the hard drive.
+
+**Format:** `bye`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: Where is my data saved?
+**A**: Nimbus data is saved in a folder named `data`, automatically created in the same directory as your `nimbus.jar` file. The file itself is called `nimbus.txt`.
+
+**Q**: How do I transfer my data to another Computer?
+**A**: Simply copy the `data/nimbus.txt` file into the same directory as the `nimbus.jar` file on your new computer.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command Summary
+
+| Action | Format, Examples |
+|--------|------------------|
+| **ToDo** | `todo <DESCRIPTION>` <br> e.g., `todo read book` |
+| **Deadline** | `deadline <DESCRIPTION> /by <DATE_OR_TIME>` <br> e.g., `deadline submit assignment /by Sunday 1159pm` |
+| **Event** | `event <DESCRIPTION> /from <START_TIME> /to <END_TIME>` <br> e.g., `event project meeting /from 2pm /to 4pm` |
+| **List** | `list` |
+| **Mark** | `mark <INDEX>` <br> e.g., `mark 1` |
+| **Unmark** | `unmark <INDEX>` <br> e.g., `unmark 2` |
+| **Delete** | `delete <INDEX>` <br> e.g., `delete 3` |
+| **Find** | `find <KEYWORD>` <br> e.g., `find book` |
+| **Exit** | `bye` |
