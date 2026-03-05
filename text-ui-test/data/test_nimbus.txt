@@ -1,0 +1,5 @@
+T | 0 | borrow book
+D | 0 | finish CS2113 assignment | Sunday 8pm
+T | 1 | CG2023 Assignment
+T | 0 | read GEC1013 notes
+T | 0 | new case insensitive task

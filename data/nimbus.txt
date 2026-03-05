@@ -1,6 +1,5 @@
-D | 1 | return book | June 6th
-E | 1 | project meeting | Aug 6th 2-4pm
-T | 1 | join sports club
-E | 1 | clean-up | monday-tuesday
-D | 1 | ee4415 lab | 9th August
-T | 0 | cs2113 lab
+T | 1 | buy uniform
+T | 1 | clear storeroom
+E | 0 | birthday bash | 2026-11-10-2026-11-11
+D | 0 | CG2023 Assignment | 2026-03-06
+D | 0 | CG2023 Lab | 2026-03-07

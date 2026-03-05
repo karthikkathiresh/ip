@@ -1,0 +1,15 @@
+T | 0 | borrow book
+D | 0 | finish CS2113 assignment | Sunday 8pm
+T | 1 | borrow book
+E | 0 | birthday party | Wednesday 5pm-9pm
+T | 0 | CG2023 Assignment
+D | 0 | CG2271 lab | Friday 9am
+T | 0 | read GEC1013 notes
+T | 0 | new case insensitive task
+T | 0 | borrow book
+D | 0 | finish CS2113 assignment | Sunday 8pm
+E | 0 | birthday party | Wednesday 5pm-9pm
+T | 0 | CG2023 Assignment
+D | 0 | CG2271 lab | Friday 9am
+T | 0 | read GEC1013 notes
+T | 0 | new case insensitive task

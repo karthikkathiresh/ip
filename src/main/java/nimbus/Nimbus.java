@@ -70,6 +70,10 @@ public class Nimbus {
     }
 
     public static void main(String[] args) throws NimbusException, IOException {
-        new Nimbus("data/nimbus.txt").run();
+        String filePath = "data/nimbus.txt";
+        if (args.length > 0) {
+            filePath = args[0];
+        }
+        new Nimbus(filePath).run();
     }
 }

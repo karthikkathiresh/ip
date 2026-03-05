@@ -107,6 +107,7 @@ public class Ui {
             messages.add(INDENT + (i + 1) + ". " + matchingTasks.get(i).toString());
         }
 
+        messages.add(HORIZONTAL_LINE);
         printToScreen(messages.toArray(new String[0]));
     }
 

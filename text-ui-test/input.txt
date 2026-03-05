@@ -17,4 +17,8 @@ delete 3
 list
 delete 4
 list
+find assignment
+FIND book
+TODO new case insensitive task
+LiSt
 bye
