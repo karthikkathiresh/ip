@@ -11,12 +11,21 @@ import nimbus.storage.Storage;
 import nimbus.tasks.TaskList;
 import nimbus.ui.Ui;
 
+/**
+ * The main entry point for the Nimbus application.
+ * Initializes the required components and manages the main execution loop.
+ */
 public class Nimbus {
 
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Constructs a Nimbus instance, setting up the UI, Storage, and TaskList.
+     *
+     * @param filePath The relative path to the file where task data is saved.
+     */
     public Nimbus(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -30,6 +39,13 @@ public class Nimbus {
 
     }
 
+    /**
+     * Runs the main execution loop of the application.
+     * Repeatedly prompts the user for commands and executes them until an exit command is given.
+     *
+     * @throws NimbusException If an unexpected error occurs during command execution.
+     * @throws IOException If an error occurs while saving the task list.
+     */
     public void run() throws NimbusException, IOException {
         ui.printWelcomeMessage();
         boolean isExit = false;

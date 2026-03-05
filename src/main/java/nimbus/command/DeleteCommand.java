@@ -5,10 +5,18 @@ import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 import nimbus.ui.Ui;
 
+/**
+ * Represents a command to delete a task from the task list using its display index.
+ */
 public class DeleteCommand extends Command {
 
     private final String description;
 
+    /**
+     * Constructs a DeleteCommand.
+     *
+     * @param description The string representation of the task index to be deleted.
+     */
     public DeleteCommand(String description) {
         this.description = description;
     }

@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task that occurs within a specific time frame.
+ */
 public class Event extends Task {
 
     protected String from;
@@ -11,6 +14,14 @@ public class Event extends Task {
     protected LocalDate fromDate;
     protected LocalDate toDate;
 
+    /**
+     * Constructs an Event task.
+     * Attempts to parse the provided start and end times into LocalDate objects for formatting.
+     *
+     * @param description The details of the event.
+     * @param from The string representation of the start time.
+     * @param to The string representation of the end time.
+     */
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;
@@ -71,6 +82,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + displayFrom + " to: " + displayTo + ")";
     }
 
+    @Override
     public String toSaveFormat() {
         int doneNumber = (isDone) ? 1 : 0;
         return "E | " + doneNumber + " | " + description + " | " + from + "-" + to;

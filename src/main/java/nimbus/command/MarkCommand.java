@@ -5,10 +5,18 @@ import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 import nimbus.ui.Ui;
 
+/**
+ * Represents a command to mark a specific task in the task list as completed.
+ */
 public class MarkCommand extends Command {
 
     private final String description;
 
+    /**
+     * Constructs a MarkCommand.
+     *
+     * @param description The string representation of the task index to be marked as done.
+     */
     public MarkCommand(String description) {
         this.description = description;
     }

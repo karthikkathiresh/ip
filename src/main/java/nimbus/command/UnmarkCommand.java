@@ -5,10 +5,18 @@ import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 import nimbus.ui.Ui;
 
+/**
+ * Represents a command to unmark a specific task, indicating it is not completed.
+ */
 public class UnmarkCommand extends Command {
 
     private final String description;
 
+    /**
+     * Constructs an UnmarkCommand.
+     *
+     * @param description The string representation of the task index to be unmarked.
+     */
     public UnmarkCommand(String description) {
         this.description = description;
     }

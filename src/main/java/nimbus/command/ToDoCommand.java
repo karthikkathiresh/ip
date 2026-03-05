@@ -5,10 +5,17 @@ import nimbus.tasks.TaskList;
 import nimbus.tasks.ToDo;
 import nimbus.ui.Ui;
 
+/**
+ * Represents a command to add a new ToDo task to the task list.
+ */
 public class ToDoCommand extends Command {
 
     private final String description;
 
+    /**
+     * Constructs a ToDoCommand.
+     * @param description The details of the todo task.
+     */
     public ToDoCommand(String description) {
         this.description = description;
     }

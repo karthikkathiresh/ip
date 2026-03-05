@@ -13,14 +13,31 @@ import nimbus.tasks.Task;
 import nimbus.tasks.TaskList;
 import nimbus.tasks.ToDo;
 
+/**
+ * Handles the loading and saving of task data to a file.
+ * Ensures that the user's task list is persistent across multiple sessions.
+ */
 public class Storage {
 
     private final String filePath;
 
+    /**
+     * Constructs a Storage object.
+     *
+     * @param filePath The relative path to the file where data will be stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the saved tasks from the hard drive into a TaskList.
+     * If the save directory or a file does not exist, it will automatically careate a new one.
+     *
+     * @return A TaskList populated with the previously saved tasks.
+     * @throws NimbusException If the file format is invalid.
+     * @throws FileNotFoundException If the save file cannot be read.
+     */
     public TaskList load() throws NimbusException, FileNotFoundException {
         TaskList loadedTasks = new TaskList();
         File f = new File(filePath);
@@ -65,6 +82,12 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     * Saves the current task list to the hard drive.
+     *
+     * @param taskList The current TaskList to be saved.
+     * @throws NimbusException If there is an issue writing to the file.
+     */
     public void save(TaskList taskList) throws NimbusException {
         try {
             FileWriter fw = new FileWriter(filePath);
