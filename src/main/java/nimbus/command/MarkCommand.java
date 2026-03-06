@@ -27,19 +27,27 @@ public class MarkCommand extends Command {
             throw new NimbusException("    OOPS!!! Specify the task number!");
         }
 
-        int index = Integer.parseInt(description);
-        int zeroBasedIndex = index - 1;
-        if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
-            throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
+        try {
+            int index = Integer.parseInt(description);
+            int zeroBasedIndex = index - 1;
+            if (zeroBasedIndex < 0 || zeroBasedIndex >= taskList.getTaskCount()) {
+                throw new NimbusException("    OOPS!!! Task number " + index + " does not exist!");
+            }
+
+            Task task = taskList.getTask(zeroBasedIndex);
+            if (task.getIsDone().equals(true)) {
+                ui.printMarkedError();
+            } else {
+                task.setIsDone(true);
+                ui.printMarkedTask(task);
+            }
+
+        } catch (NumberFormatException e) {
+            throw new NimbusException("    OOPS!!! Please provide a valid number!");
         }
 
-        Task task = taskList.getTask(zeroBasedIndex);
 
-        if (task.getIsDone().equals(true)) {
-            ui.printMarkedError();
-        } else {
-            task.setIsDone(true);
-            ui.printMarkedTask(task);
-        }
+
+
     }
 }
